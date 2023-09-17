@@ -1,0 +1,10 @@
+/*
+Kenneth Sims
+*/
+
+/* Tiles */
+
+	body, #chart-area, #widget-container, .tv-main-panel {background: #FFF;}
+.chart-page .chart-container {border: black solid 0;}
+
+div {width: 980px;height:300px; margin:0 auto;}

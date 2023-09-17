@@ -1,0 +1,59 @@
+<!--Tutu Script-->
+<script>    <!DOCTYPE html>
+<html> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Market Data</title>
+</head>
+<body>
+<h1>Crypto Market Data</h1>
+<label for="cryptoSymbol">Enter the cryptocurrency symbol (e.g., BTC, ETH):</label>
+<input type="text" id="cryptoSymbol" placeholder="Enter symbol">
+<button id="fetchData">Fetch Data</button>
+<div id="cryptoInfo"></div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const apiKey = 'ab34610c-1e58-415e-a883-053379f689fe';
+
+    async function getCryptoData(cryptoSymbol) {
+        const apiUrl = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest';
+        const params = {
+            symbol: cryptoSymbol,
+        };
+        const headers = {
+            'X-CMC_PRO_API_KEY': apiKey,
+        };
+
+        try {
+            const response = await fetch(apiUrl + '?' + new URLSearchParams(params), { headers });
+            const data = await response.json();
+            if (cryptoSymbol in data.data) {
+                return data.data[cryptoSymbol];
+            } else {
+                return null;
+            }
+        } catch (error) {
+            console.error(`Error fetching data: ${error.message}`);
+            return null;
+        }
+    }
+    document.getElementById('fetchData').addEventListener('click', async () => {
+        const cryptoSymbol = document.getElementById('cryptoSymbol').value.trim().toUpperCase();
+        const cryptoInfo = document.getElementById('cryptoInfo');
+
+        if (cryptoSymbol) {
+            cryptoInfo.innerHTML = 'Fetching data...';
+
+            const cryptoData = await getCryptoData(cryptoSymbol);
+
+            if (cryptoData) {
+                cryptoInfo.innerHTML = `
+                    <h2>${cryptoData.name} (${cryptoData.symbol})</h2>
+                    <p>Current Price (USD): $${cryptoData.quote.USD.price.toFixed(2)}</p>
+                    <p>Market Cap (USD): $${cryptoData.quote.USD.market_cap.toFixed(2)}</p>
+                    <p>Total Volume (USD): $${cryptoData.quote.USD.volume_24h.toFixed(2)}</p>
+                cryptoInfo.innerHTML = `No data found for ${cryptoSymbol}. Check the symbol and try again.`
+</script>
+</body>
+</html>
+</script>
+<!--Tutu Script End-->  

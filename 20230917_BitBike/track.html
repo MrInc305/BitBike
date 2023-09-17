@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Track a Bike Trip</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/374912_tech-logo-png.png" alt="" /></span><span class="title">BitBike</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="search_coins.html">Search Coins</a></li>
+							<li><a href="track.html">Track</a></li>
+							<li><a href="bab.html">Book A Bike</a></li>
+							<li><a href="about.html">About Us</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<head>
+    <title>Distance and Time Calculator</title>
+    <!-- Include the Google Maps JavaScript API script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUsDd1NLdQ3HqbuMXq0woc29eIzHw-Kho"></script>
+</head>
+<body>
+    <h1>Distance and Time Calculator</h1>
+    <form>
+        <label for="origin">Enter the origin address: </label>
+        <input type="text" id="origin" required><br>
+        <label for="destination">Enter the destination address: </label>
+        <input type="text" id="destination" required><br>
+        <button type="button" onclick="calculateDistanceAndTime()">Calculate</button>
+    </form>
+    <p id="result"></p>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUsDd1NLdQ3HqbuMXq0woc29eIzHw-Kho"></script>
+</head>
+<body>
+   
+<p align="center">
+<iframe
+width="600"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAUsDd1NLdQ3HqbuMXq0woc29eIzHw-Kho&q=WV46+VF North Miami, Florida">
+</iframe>
+
+
+<script>
+        function calculateDistanceAndTime() {
+            const originAddress = document.getElementById("origin").value;
+            const destinationAddress = document.getElementById("destination").value;
+
+            // Create a DirectionsService object
+            const directionsService = new google.maps.DirectionsService();
+
+            // Define the travel mode (cycling)
+            const request = {
+                origin: originAddress,
+                destination: destinationAddress,
+                travelMode: google.maps.TravelMode.BICYCLING
+            };
+
+            // Calculate the route
+            directionsService.route(request, function (response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    const route = response.routes[0];
+                    const distance = route.legs[0].distance.text;
+                    const duration = route.legs[0].duration.text;
+                    const resultMessage = `Distance: ${distance}, Time for cycling: ${duration}`;
+                    document.getElementById("result").textContent = resultMessage;
+                } else {
+                    document.getElementById("result").textContent = "No results found for the provided addresses.";
+                }
+            });
+        }
+    </script>
+</body>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
